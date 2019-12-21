@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<todolist>
+	<todo>
+		<title>Do Math</title>
+		<progress>In progress</progress>
+		<description>
+	   To do homework at Math
+	   </description>
+		<daysLeft>1</daysLeft>
+		<implementer>Ira</implementer>
+	</todo>
+	<todo>
+		<title>Do Lab 3</title>
+		<progress>Done</progress>
+		<description>
+		Do Lab #3 on object-oriented programming
+		</description>
+		<daysLeft>0</daysLeft>
+		<implementer>Ira</implementer>
+	</todo>
+	<todo>
+		<title>Design a site</title>
+		<progress>Proposed</progress>
+		<description>
+		Create a design of a site for flowers shop for Anna
+		</description>
+		<daysLeft>90</daysLeft>
+		<implementer>Margo</implementer>
+	</todo>
+	<todo>
+		<title>Buy notebooks</title>
+		<progress>Proposed</progress>
+		<description>
+		Buy a few notebooks in cells for Math
+		</description>
+		<daysLeft>90</daysLeft>
+		<implementer>Mom</implementer>
+	</todo>
+	<todo>
+		<title>Repair a lamp</title>
+		<progress>In progress</progress>
+		<description>
+		Find out what the problem is, repair a lamp
+		</description>
+		<daysLeft>90</daysLeft>
+		<implementer>Dad</implementer>
+	</todo>
+	<todo>
+		<title>Buy a food for mouse</title>
+		<progress>Proposed</progress>
+		<description>
+			Buy 0.5 kg of food for Zombie
+		</description>
+		<daysLeft>2</daysLeft>
+		<implementer>Anyone</implementer>
+	</todo>
+</todolist>

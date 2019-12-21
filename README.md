@@ -1,3 +1,3 @@
 # XML Parser
 ## Lab #3 on OOP
-Author: Ira Syvokobylska, K-25
+Author: Syvokobylskaya Ira, K-25

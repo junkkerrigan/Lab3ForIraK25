@@ -26,9 +26,11 @@ namespace Lab3
 
         public ParserForm()
         {
+            SizeChanged += ParserFormSizeChanged;
+            FormClosing += ParserFormClosed;
             FillLayout();
             Text = "XMLParser";
-            Parser = new StrategyDOM(PathToXML);
+            Parser = new StrategySAX(PathToXML);
             FillMatchData();
         }
 
@@ -40,16 +42,12 @@ namespace Lab3
                 Size = new Size((ClientSize.Width - 200) / 2, ClientSize.Height - 100),
                 Font = new Font("Times New Roman", 14),
             };
-            SizeChanged += ParserFormSizeChanged;
-            FormClosing += ParserFormClosed;
 
             MountFilters();
             MountLabels();
             MountRadiobuttons();
             MountButtons();
             Controls.Add(MatchData);
-
-            Parser = new StrategyLINQ(PathToXML);
         }
         void MountFilters()
         {
@@ -268,18 +266,25 @@ namespace Lab3
                 RichTextBox f = sender as RichTextBox;
                 newValue = f.Text;
                 propTitle = f.Name;
-                oldValue = (int)CurrentFilters.GetType().GetProperty(propTitle).GetValue(CurrentFilters);
-                try
+                if (!(f.Name == "DaysLeftFrom" || f.Name == "DaysLeftTo"))
                 {
                     CurrentFilters.UpdateFilter(propTitle, newValue);
                 }
-                catch
+                else
                 {
-                    MessageBox.Show("Invalid days left filter value", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    if (oldValue == int.MaxValue || oldValue == int.MinValue)
-                        f.Text = "";
-                    else f.Text = oldValue.ToString();
+                    oldValue = (int)CurrentFilters.GetType().GetProperty(propTitle).GetValue(CurrentFilters);
+                    try
+                    {
+                        CurrentFilters.UpdateFilter(propTitle, newValue);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Invalid days left filter value", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (oldValue == int.MaxValue || oldValue == int.MinValue)
+                            f.Text = "";
+                        else f.Text = oldValue.ToString();
+                    }
                 }
             }
             else
@@ -287,18 +292,25 @@ namespace Lab3
                 ComboBox f = sender as ComboBox;
                 newValue = f.Text;
                 propTitle = f.Name;
-                oldValue = (int)CurrentFilters.GetType().GetProperty(propTitle).GetValue(CurrentFilters);
-                try
+                if (!(f.Name == "DaysLeftFrom" || f.Name == "DaysLeftTo"))
                 {
                     CurrentFilters.UpdateFilter(propTitle, newValue);
                 }
-                catch
+                else
                 {
-                    MessageBox.Show("Invalid days left filter value", "Error",
-                        MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    if (oldValue == int.MinValue || oldValue == int.MaxValue)
-                        f.Text = "";
-                    else f.Text = oldValue.ToString();
+                    oldValue = (int)CurrentFilters.GetType().GetProperty(propTitle).GetValue(CurrentFilters);
+                    try
+                    {
+                        CurrentFilters.UpdateFilter(propTitle, newValue);
+                    }
+                    catch
+                    {
+                        MessageBox.Show("Invalid days left filter value", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (oldValue == int.MinValue || oldValue == int.MaxValue)
+                            f.Text = "";
+                        else f.Text = oldValue.ToString();
+                    }
                 }
             }
         }

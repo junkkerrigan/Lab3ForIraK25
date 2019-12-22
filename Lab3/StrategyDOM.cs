@@ -20,7 +20,7 @@ namespace Lab3
         {
             var TodoNodes = xmlDoc.SelectNodes("//todo");
             List<Todo> match = new List<Todo>();
-            List<string> mealtimes = new List<string>();
+            List<string> progressStages = new List<string>();
             List<string> implementers = new List<string>();
             foreach (XmlNode node in TodoNodes)
             {
@@ -35,7 +35,7 @@ namespace Lab3
                 if (filter.CheckTodo(Todo))
                 {
                     match.Add(Todo);
-                    mealtimes.Add(Todo.Progress);
+                    progressStages.Add(Todo.Progress);
                     implementers.Add(Todo.Implementer);
                 }
             }
@@ -43,7 +43,7 @@ namespace Lab3
             return new MatchInfo()
             {
                 TodosList = match.ToArray(),
-                ProgressStages = mealtimes.Distinct().ToArray(),
+                ProgressStages = progressStages.Distinct().ToArray(),
                 Implementers = implementers.Distinct().ToArray(),
             };
         }

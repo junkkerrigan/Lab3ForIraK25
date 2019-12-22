@@ -20,31 +20,31 @@ namespace Lab3
         {
             XDocument XMLData = XDocument.Load(file);
             Todos = new List<Todo>(
-                from book in XMLData.Element("todolist").Elements("todo")
+                from todo in XMLData.Element("todolist").Elements("todo")
                 select new Todo()
                 {
-                    Title = book.Element("title").Value,
-                    Progress = book.Element("progress").Value,
-                    Implementer = book.Element("implementer").Value,
-                    Description = book.Element("description").Value.Trim(),
-                    DaysLeft = book.Element("daysLeft").Value,
+                    Title = todo.Element("title").Value,
+                    Progress = todo.Element("progress").Value,
+                    Implementer = todo.Element("implementer").Value,
+                    Description = todo.Element("description").Value.Trim(),
+                    DaysLeft = todo.Element("daysLeft").Value,
                 });
         }
 
         public MatchInfo Parse(Filter filter)
         {
             Todo[] match = (
-                from book in Todos
-                where filter.CheckTodo(book)
-                select book).ToArray();
+                from todo in Todos
+                where filter.CheckTodo(todo)
+                select todo).ToArray();
 
             return new MatchInfo()
             {
                 TodosList = match,
-                ProgressStages = (from book in match
-                            select book.Progress).Distinct().ToArray(),
-                Implementers = (from book in match
-                          select book.Implementer)
+                ProgressStages = (from todo in match
+                            select todo.Progress).Distinct().ToArray(),
+                Implementers = (from todo in match
+                          select todo.Implementer)
                     .Distinct().ToArray(),
             };
         }
